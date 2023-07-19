@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+ <resultMap id="CartResult" type="cart">
+    <id property="cid"  column="cid" />
+    <result property="custno"    column="custno" /> 
+    <result property="pid"   column="pid" />
+    <result property="amount"    column="amount" />
+  </resultMap>
+  	<insert id="INSERT" parameterType="cart"  >
+		insert into cart(cid,custno,pid,amount) values(cart_cid.nextval,#{custno},#{pid},#{amount})
+ 	</insert>
+ 
+ 	<select id="SELECT_ALL" resultMap="CartResult">
+		select cid, c.pid,pname,pprice,amount,pimg as pimgstr  from cart c join ptbl p
+		on c.pid=p.pid where custno = #{custno}
+	</select>
+	
+	<delete id="DELETE_ALL" parameterType="cart">
+		delete from cart where custno = #{custno}
+	</delete>
+	
+ 	<delete id="DELETE_ONE" parameterType="cart">
+		delete from cart where cid=#{cid}
+	</delete>
+	
+	<update id="UPDATE" parameterType="cart">
+		update cart set amount=#{amount} where cid=#{cid}
+	</update>
+ </mapper>

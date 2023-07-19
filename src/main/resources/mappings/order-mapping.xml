@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+
+  	<insert id="INSERT_MONEY" parameterType="orderm"  >
+		insert into ordert(idx,custno,baesongbi,totalmoney) values(cart_cid.nextval,#{ocustno},#{baesongbi},#{totalmoney})
+ 	</insert>
+ 	
+  	<insert id="INSERT_JUMUN" parameterType="orderj"  >
+	   insert into orderj(idx,custno, cid , pid, pname , amount, orderg )
+	   values (cart_cid.nextval ,#{custno},#{cid}, #{pid},#{pname}, #{amount} , #{orderg} )
+ 	</insert>
+ 	
+ 	<select id="SELECT_ORDER" parameterType="orderm"  resultType="orderm">
+		 select  max(idx) as idx  from  ordert where custno =#{ocustno}
+	</select>
+	<select id="SELECT_ORDER_ALL" parameterType="orderm"  resultType="orderm">
+		 select idx,custno as ocustno,baesongbi, totalmoney from  ordert
+	</select>
+	
+ </mapper>

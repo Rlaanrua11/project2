@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+  <resultMap id="ProductResult" type="product">
+    <id property="pid"  column="pid" />
+    <result property="pdesc"    column="pdesc" /> 
+    <result property="pprice"   column="pprice" />
+    <result property="pname"    column="pname" />
+    <result property="pdate"    column="pdate" />
+    <result property="pimgstr"    column="pimgstr" />
+  </resultMap>
+
+
+  	<insert id="INSERT" parameterType="product"  >
+		insert into ptbl(pid,pname,pprice,pdesc,pimg,pdate) values(seq_id.nextval,#{pname},#{pprice},#{pdesc},#{pimgstr},sysdate)
+ 	</insert>
+ 
+ 	<select id="SELECT_ALL" resultMap="ProductResult">
+		select pid,pname,pprice,pdesc,pimg as pimgstr,pdate from ptbl
+	</select>
+ 	
+ 	<select id="SELECT_ONE" resultMap="ProductResult">
+		select pid,pname,pprice,pdesc,pimg as pimgstr,pdate from ptbl where pid=#{pid}
+	</select>
+	
+	<delete id="DELETE" parameterType="product">
+		delete from ptbl where pid=#{pid}
+	</delete>
+ </mapper>

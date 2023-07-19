@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="company">
+
+  <resultMap id="CompanyResult" type="company">
+    <id property="idx"  column="idx" />
+    <result property="rdnmadr"    column="rdnmadr" /> 
+    <result property="entrprsnm"   column="entrprsnm" />
+    <result property="rprsntvnm"    column="rprsntvnm" />
+    <result property="maingoods"    column="maingoods" /> 
+    <result property="logitude"    column="logitude" /> 
+    <result property="latitude"  column="latitude" /> 
+  </resultMap>
+  
+   <resultMap id="EvSearchResult" type="ev">
+    <id property="idx"  column="idx" />
+    <result property="addr"    column="addr" />
+    <result property="cpnm"    column="cpnm" /> 
+    <result property="cpstat"    column="cpstat" /> 
+    <result property="csnm"  column="csnm" /> 
+  </resultMap>
+  
+  
+  <insert id="INSERT" parameterType="company"  >
+	insert into company2(idx, rdnmadr, entrprsnm, rprsntvnm, maingoods, logitude,latitude) values(company2_idx.nextval,#{rdnmadr},#{entrprsnm},#{rprsntvnm},#{maingoods},#{logitude},#{latitude})
+ </insert>
+ 
+	
+  	<select id="SELECT_ALL" resultMap="CompanyResult">
+		select * from company2
+	</select>
+	
+	<select id="SELECT_ONE" resultMap="CompanyResult">
+		select * from company2 where idx = #{idx}
+	</select>
+	
+	<select id="SELECT_EVONE" resultMap="EvSearchResult">
+		select * from evsearch where idx = #{idx}
+	</select>
+	
+	<insert id="EVINSERT" parameterType="ev"  >
+		insert into evsearch(idx, addr, cpnm, cpstat,csnm) values(company2_idx.nextval,#{addr},#{cpnm},#{cpstat},#{csnm})
+	</insert>
+	
+	<select id="EVSELECT_ALL" resultMap="EvSearchResult">
+		select * from evsearch where addr like '%경기도%'
+	</select>
+	
+ </mapper>

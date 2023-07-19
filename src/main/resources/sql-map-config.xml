@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+  "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <typeAliases>
+    
+    <typeAlias alias="psd"    type="com.anrua.a1.psd.PsdVO" />
+    <typeAlias alias="company"    type="com.anrua.a1.openApi.CompanyVO" />
+    <typeAlias alias="ev"    type="com.anrua.a1.openApi.EvSearchVO" />
+    <typeAlias alias="product"    type="com.anrua.a1.product.ProductVO" />
+    <typeAlias alias="cart"    type="com.anrua.a1.cart.CartVO" />
+    <typeAlias alias="orderm"    type="com.anrua.a1.cart.OrdermVO" />
+    <typeAlias alias="orderj"    type="com.anrua.a1.cart.OrderjVO" />
+   	<typeAlias alias="guest"    type="com.anrua.a1.guestbook.GuestVO" />     
+  </typeAliases>
+
+  <mappers>
+    <mapper resource="mappings/psd-mapping.xml"  />
+    <mapper resource="mappings/company-mapping.xml"  />
+    <mapper resource="mappings/product-mapping.xml"  />
+    <mapper resource="mappings/cart-mapping.xml"  />
+    <mapper resource="mappings/order-mapping.xml"  />
+    <mapper resource="mappings/guest-mapping.xml"  />
+  </mappers>
+</configuration>
